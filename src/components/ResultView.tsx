@@ -1,6 +1,7 @@
 import type { CompatibilityResult, OwnerInput, PetInput } from '@/types';
 import ConfidenceBadge from './ConfidenceBadge';
 import DisclaimerBanner from './DisclaimerBanner';
+import ShareBar from './ShareBar';
 
 export default function ResultView({
   owner,
@@ -128,6 +129,8 @@ export default function ResultView({
           </div>
         </div>
       )}
+
+      <ShareBar owner={owner} pet={pet} result={result} />
 
       <button
         onClick={onRestart}
