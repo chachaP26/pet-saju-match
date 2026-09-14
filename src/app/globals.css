@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff6fa;
+  --foreground: #5b4638;
+  color-scheme: light;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* 파스텔 펫 테마 팔레트 */
+  --color-pastel-pink: #ffd9e8;
+  --color-pastel-peach: #ffe8d6;
+  --color-pastel-mint: #d3f6e8;
+  --color-pastel-mint-deep: #4fd6b0;
+  --color-pastel-lavender: #e8dcff;
+  --color-pastel-yellow: #fff3c4;
+  --color-coral: #ff7a9c;
+  --color-coral-deep: #ef5c85;
+  --color-choco: #4a3527;
+  --color-choco-soft: #8a6d5b;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 12% 8%, var(--color-pastel-yellow) 0%, transparent 42%),
+    radial-gradient(circle at 88% 15%, var(--color-pastel-mint) 0%, transparent 40%),
+    radial-gradient(circle at 15% 92%, var(--color-pastel-lavender) 0%, transparent 38%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: 0.01em;
 }
