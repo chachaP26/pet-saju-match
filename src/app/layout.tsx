@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jua, Gaegu } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const jua = Jua({
@@ -47,7 +48,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={`${jua.variable} ${gaegu.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js"
+          integrity="sha384-oroumrnFVE0xtgqyDZJARgERibXg2C28380uaUZz2kHDS5CR7tu20eGiOU6GkTpy"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        {children}
+      </body>
     </html>
   );
 }

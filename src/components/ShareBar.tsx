@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import type { CompatibilityResult, OwnerInput, PetInput } from '@/types';
-import { buildShareContent } from '@/lib/share';
+import { buildShareContent, SITE_URL } from '@/lib/share';
+import { getInitializedKakao } from '@/lib/kakao';
 
 export default function ShareBar({
   owner,
@@ -45,6 +46,27 @@ export default function ShareBar({
   }
 
   async function handleKakaoShare() {
+    const kakao = getInitializedKakao();
+    if (kakao) {
+      const { title, text } = buildShareContent(owner, pet, result);
+      kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title,
+          description: text,
+          imageUrl: `${SITE_URL}/opengraph-image`,
+          link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
+        },
+        buttons: [
+          {
+            title: '나도 궁합보기',
+            link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
+          },
+        ],
+      });
+      return;
+    }
+
     if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       handleNativeShare();
       return;
